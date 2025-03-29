@@ -1,3 +1,5 @@
+String branchName = "main"
+String repoUrl = "https://github.com/zensarsuman/JenkinsAndDockerAssessment.git"
 pipeline {
     agent any
     
