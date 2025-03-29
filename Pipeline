@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/zensarsuman/JenkinsAndDockerAssessment.git' // Replace with your actual repo URL
+                git clone 'https://github.com/zensarsuman/JenkinsAndDockerAssessment.git' // Replace with your actual repo URL
             }
         }
         
