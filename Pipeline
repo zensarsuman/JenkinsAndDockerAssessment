@@ -1,24 +1,36 @@
-String branchName = "main"
-String repoUrl = "https://github.com/zensarsuman/JenkinsAndDockerAssessment.git"
 pipeline {
     agent any
     
+    environment {
+        BRANCH_NAME = "main"
+        REPO_URL = "https://github.com/zensarsuman/JenkinsAndDockerAssessment.git"
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/zensarsuman/JenkinsAndDockerAssessment.git'
+                script {
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: "*/${BRANCH_NAME}"]],
+                        userRemoteConfigs: [[url: "${REPO_URL}"]]
+                    ])
+                }
             }
         }
         
         stage('Compile Java Code') {
             steps {
-                sh 'javac Hello.java'
+                script {
+                    sh 'javac Hello.java'
+                }
             }
         }
         
         stage('Run Java Program') {
             steps {
-                sh 'java Hello'
+                script {
+                    sh 'java Hello'
+                }
             }
         }
     }
