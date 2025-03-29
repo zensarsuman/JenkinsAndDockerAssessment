@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/zensarsuman/JenkinsAndDockerAssessment.git' // Replace with your actual repo URL
+            }
+        }
+        
+        stage('Compile Java Code') {
+            steps {
+                sh 'javac Hello.java'
+            }
+        }
+        
+        stage('Run Java Program') {
+            steps {
+                sh 'java Hello'
+            }
+        }
+    }
+}
